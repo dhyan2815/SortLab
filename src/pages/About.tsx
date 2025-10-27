@@ -10,7 +10,7 @@ export default function About() {
               <BarChart3 className="w-16 h-16 text-cyan-400" />
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-white">
-              About Sort<span className="text-cyan-400">Viz</span>
+              About Sort<span className="text-cyan-400">Lab</span>
             </h1>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               An interactive platform for visualizing and comparing sorting algorithms
@@ -18,16 +18,16 @@ export default function About() {
           </div>
 
           <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-8 space-y-6">
-            <h2 className="text-2xl font-bold text-white">What is SortViz?</h2>
+            <h2 className="text-2xl font-bold text-white">What is SortLab?</h2>
             <p className="text-gray-300 leading-relaxed">
-              SortViz is a production-ready web application designed to help students, educators, and developers
+              SortLab is a production-ready web application designed to help students, educators, and developers
               understand how sorting algorithms work through interactive visualizations. By animating the sorting
               process step-by-step, users can observe comparisons, swaps, and the overall behavior of different
               algorithms in real-time.
             </p>
             <p className="text-gray-300 leading-relaxed">
               Whether you're learning algorithms for the first time or teaching computer science concepts,
-              SortViz provides an intuitive and engaging way to explore the fundamental building blocks of
+              SortLab provides an intuitive and engaging way to explore the fundamental building blocks of
               computational problem-solving.
             </p>
           </div>
