@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - SortLab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <span class="brand-text">Sort<span class="brand-accent">Viz</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-5">
+      <div class="about-header text-center mb-5">
+        <h1 class="display-4 mb-3">About Sorting Algorithms</h1>
+        <p class="lead">Understanding the fundamentals of sorting and their practical applications</p>
+      </div>
+
+      <section class="about-section mb-5">
+        <h2 class="section-title">What is Sorting?</h2>
+        <p class="section-text">
+          Sorting is the process of arranging data elements in a specific order, typically ascending or descending.
+          It is one of the most fundamental operations in computer science and forms the basis for many other
+          algorithms and data structures. Efficient sorting enables faster searching, better data organization,
+          and optimized performance in various applications.
+        </p>
+      </section>
+
+      <section class="about-section mb-5">
+        <h2 class="section-title">Algorithm Definitions</h2>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Bubble Sort</h3>
+          <p class="algorithm-description">
+            A simple comparison-based algorithm that repeatedly steps through the list, compares adjacent
+            elements, and swaps them if they are in the wrong order. The process continues until no more
+            swaps are needed, indicating the list is sorted.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Small datasets, educational purposes, nearly sorted data.</p>
+        </div>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Selection Sort</h3>
+          <p class="algorithm-description">
+            This algorithm divides the input into a sorted and unsorted region. It repeatedly selects the
+            smallest (or largest) element from the unsorted region and moves it to the end of the sorted region.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Small datasets, situations where memory writes are costly, simple implementation needs.</p>
+        </div>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Insertion Sort</h3>
+          <p class="algorithm-description">
+            Builds the final sorted array one item at a time by repeatedly picking the next element and
+            inserting it into its correct position among the previously sorted elements.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Small datasets, nearly sorted data, online sorting (data arrives continuously).</p>
+        </div>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Merge Sort</h3>
+          <p class="algorithm-description">
+            A divide-and-conquer algorithm that divides the array into halves, recursively sorts them,
+            and then merges the sorted halves back together. It guarantees O(n log n) performance.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Large datasets, linked lists, external sorting, stable sorting requirements.</p>
+        </div>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Quick Sort</h3>
+          <p class="algorithm-description">
+            Another divide-and-conquer algorithm that selects a pivot element and partitions the array
+            around it, placing smaller elements before and larger elements after. It then recursively
+            sorts the partitions.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Large datasets, in-place sorting needs, general-purpose sorting.</p>
+        </div>
+
+        <div class="algorithm-card">
+          <h3 class="algorithm-name">Heap Sort</h3>
+          <p class="algorithm-description">
+            Uses a binary heap data structure to sort elements. It first builds a max heap from the input
+            data, then repeatedly extracts the maximum element and reconstructs the heap until sorted.
+          </p>
+          <p class="algorithm-use"><strong>Best Used For:</strong> Systems with memory constraints, guaranteed O(n log n) performance, priority queue implementations.</p>
+        </div>
+      </section>
+
+      <section class="about-section mb-5">
+        <h2 class="section-title">Real-World Applications</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">Database Management</h4>
+              <p>Sorting query results, indexing, and optimizing database operations.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">Search Engines</h4>
+              <p>Ranking search results, organizing web pages, and processing user queries.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">E-commerce</h4>
+              <p>Product sorting by price, rating, popularity, and personalized recommendations.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">Data Analysis</h4>
+              <p>Statistical computations, finding medians, percentiles, and data visualization.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">File Systems</h4>
+              <p>Organizing files and directories for efficient retrieval and display.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="application-card">
+              <h4 class="application-title">Social Media</h4>
+              <p>Timeline organization, content ranking, and feed personalization.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <h2 class="section-title">Why Study Sorting Algorithms?</h2>
+        <p class="section-text">
+          Understanding sorting algorithms is crucial for computer science students and professionals because:
+        </p>
+        <ul class="benefits-list">
+          <li>They demonstrate fundamental algorithm design techniques like divide-and-conquer and dynamic programming</li>
+          <li>They teach time and space complexity analysis</li>
+          <li>They provide insights into trade-offs between different approaches</li>
+          <li>They are frequently asked in technical interviews</li>
+          <li>They form the foundation for more advanced algorithms and data structures</li>
+          <li>They help develop problem-solving and analytical thinking skills</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5 class="footer-title">SortLabs</h5>
+            <p class="footer-text">Interactive sorting algorithm visualization and comparison platform.</p>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5 class="footer-title">Team</h5>
+            <p class="footer-text">Developed by Computer Science Students</p>
+            <p class="footer-text">Mentor: Dr. Sarah Johnson</p>
+          </div>
+          <div class="col-md-4">
+            <h5 class="footer-title">Project</h5>
+            <p class="footer-text">Academic Project 2025</p>
+            <p class="footer-text">Algorithm Analysis & Design</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 SortLabs Educational Project.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
