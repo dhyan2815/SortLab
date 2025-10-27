@@ -4,62 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SortLab - Algorithm Comparison & Visualization</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <title>Sorting Algorithm Visualizer</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <span class="brand-text">Sort<span class="brand-accent">Lab</span></span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/" data-page="home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about.html" data-page="about">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <main id="app"></main>
-
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 mb-3 mb-md-0">
-            <h5 class="footer-title">SortLab</h5>
-            <p class="footer-text">Interactive sorting algorithm visualization and comparison platform.</p>
-          </div>
-          <div class="col-md-4 mb-3 mb-md-0">
-            <h5 class="footer-title">Team</h5>
-            <p class="footer-text">Developed by Computer Science Students</p>
-            <p class="footer-text">Mentor: Dr. Sarah Johnson</p>
-          </div>
-          <div class="col-md-4">
-            <h5 class="footer-title">Project</h5>
-            <p class="footer-text">Academic Project 2025</p>
-            <p class="footer-text">Algorithm Analysis & Design</p>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 SortLab. Educational Project.</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/main.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
