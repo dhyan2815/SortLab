@@ -100,7 +100,7 @@ export default function VisualizationCanvas({ step, animate = true }: Visualizat
   }, [step, animate]);
 
   return (
-    <div className="w-full bg-white dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-800 shadow-sm dark:shadow-none">
+    <div className="w-full bg-white dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-800 shadow-md dark:shadow-none duration-300 transition-all hover:shadow-lg">
       <svg ref={svgRef} className="w-full" style={{ minHeight: '300px' }}></svg>
 
       <div className="flex flex-wrap gap-4 mt-4 justify-center text-xs sm:text-sm">

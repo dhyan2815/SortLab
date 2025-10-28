@@ -152,7 +152,7 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
   }, [algorithm]);
 
   return (
-    <div className="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4 sm:p-6 shadow-sm dark:shadow-none">
+    <div className="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4 sm:p-6 shadow-lg dark:shadow-none">
       <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Algorithm Flowchart</h3>
       <div className="overflow-x-auto">
         <svg ref={svgRef} className="w-full"></svg>
