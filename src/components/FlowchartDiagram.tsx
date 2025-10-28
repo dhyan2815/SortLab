@@ -20,12 +20,12 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
     if (!container) return;
 
     const containerWidth = container.clientWidth;
-    const nodeHeight = 60; // standard height
+    const nodeHeight = 80; // standard height
     const nodeWidth = 160; // standard width for readability
-    const verticalSpacing = 120; // ensures clear separation between rows
+    const verticalSpacing = 130; // ensures clear separation between rows
     const horizontalSpacing = 60; // horizontal offset for routed edges
 
-    const totalHeight = steps.length * verticalSpacing + 100;
+    const totalHeight = steps.length * verticalSpacing + 70;
 
     svg.attr('width', containerWidth).attr('height', totalHeight);
 
@@ -186,8 +186,8 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
   }, [algorithm]);
 
   return (
-    <div className="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-4 sm:p-6 shadow-lg dark:shadow-none">
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Algorithm Flowchart</h3>
+    <div className="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-2 sm:p-6 shadow-lg dark:shadow-none">
+      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-8">Algorithm Flowchart</h3>
       <div className="overflow-x-auto">
         <svg ref={svgRef} className="w-full"></svg>
       </div>

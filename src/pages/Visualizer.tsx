@@ -16,6 +16,7 @@ export default function Visualizer() {
   const [isSorting, setIsSorting] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(500);
   const [originalArray, setOriginalArray] = useState<number[]>([]);
+  const [selectedLanguage, setSelectedLanguage] = useState<'cpp' | 'python' | 'java'>('cpp');
 
   useEffect(() => {
     if (!isPlaying || !sortResult) return;
@@ -100,12 +101,235 @@ export default function Visualizer() {
 
   const currentStepData = sortResult?.steps[currentStep];
 
+  // Sorting Algorithm Code Snippets
+  const codeSnippets: Record<AlgorithmKey, Record<'cpp' | 'python' | 'java', string>> = {
+    bubble: {
+      cpp: `void bubbleSort(int arr[], int n) {
+  for (int i = 0; i < n - 1; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1])
+        swap(arr[j], arr[j + 1]);
+    }
+  }
+}`,
+      python: `def bubble_sort(arr):
+  n = len(arr)
+  for i in range(n - 1):
+    for j in range(n - i - 1):
+      if arr[j] > arr[j + 1]:
+        arr[j], arr[j + 1] = arr[j + 1], arr[j]`,
+      java: `void bubbleSort(int arr[]) {
+  int n = arr.length;
+  for (int i = 0; i < n - 1; i++) {
+    for (int j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        int temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+}`
+    },
+    selection: {
+      cpp: `void selectionSort(int arr[], int n) {
+  for (int i = 0; i < n - 1; i++) {
+    int minIdx = i;
+    for (int j = i + 1; j < n; j++) {
+      if (arr[j] < arr[minIdx])
+        minIdx = j;
+    }
+    swap(arr[i], arr[minIdx]);
+  }
+}`,
+      python: `def selection_sort(arr):
+  n = len(arr)
+  for i in range(n):
+    min_idx = i
+    for j in range(i + 1, n):
+      if arr[j] < arr[min_idx]:
+        min_idx = j
+    arr[i], arr[min_idx] = arr[min_idx], arr[i]`,
+      java: `void selectionSort(int arr[]) {
+  int n = arr.length;
+  for (int i = 0; i < n - 1; i++) {
+    int minIdx = i;
+    for (int j = i + 1; j < n; j++)
+      if (arr[j] < arr[minIdx])
+        minIdx = j;
+    int temp = arr[minIdx];
+    arr[minIdx] = arr[i];
+    arr[i] = temp;
+  }
+}`
+    },
+    insertion: {
+      cpp: `void insertionSort(int arr[], int n) {
+  for (int i = 1; i < n; i++) {
+    int key = arr[i];
+    int j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = key;
+  }
+}`,
+      python: `def insertion_sort(arr):
+  for i in range(1, len(arr)):
+    key = arr[i]
+    j = i - 1
+    while j >= 0 and arr[j] > key:
+      arr[j + 1] = arr[j]
+      j -= 1
+    arr[j + 1] = key`,
+      java: `void insertionSort(int arr[]) {
+  int n = arr.length;
+  for (int i = 1; i < n; ++i) {
+    int key = arr[i];
+    int j = i - 1;
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j = j - 1;
+    }
+    arr[j + 1] = key;
+  }
+}`
+    },
+    merge: {
+      cpp: `void merge(int arr[], int l, int m, int r) {
+  int n1 = m - l + 1, n2 = r - m;
+  int L[n1], R[n2];
+  for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+  for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+  int i = 0, j = 0, k = l;
+  while (i < n1 && j < n2) {
+    if (L[i] <= R[j]) arr[k++] = L[i++];
+    else arr[k++] = R[j++];
+  }
+  while (i < n1) arr[k++] = L[i++];
+  while (j < n2) arr[k++] = R[j++];
+}
+
+void mergeSort(int arr[], int l, int r) {
+  if (l < r) {
+    int m = l + (r - l) / 2;
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+    merge(arr, l, m, r);
+  }
+}`,
+      python: `def merge_sort(arr):
+  if len(arr) > 1:
+    mid = len(arr) // 2
+    L = arr[:mid]
+    R = arr[mid:]
+    merge_sort(L)
+    merge_sort(R)
+    i = j = k = 0
+    while i < len(L) and j < len(R):
+      if L[i] < R[j]:
+        arr[k] = L[i]; i += 1
+      else:
+        arr[k] = R[j]; j += 1
+      k += 1
+    while i < len(L):
+      arr[k] = L[i]; i += 1; k += 1
+    while j < len(R):
+      arr[k] = R[j]; j += 1; k += 1`,
+      java: `void merge(int arr[], int l, int m, int r) {
+  int n1 = m - l + 1;
+  int n2 = r - m;
+  int L[] = new int[n1];
+  int R[] = new int[n2];
+  for (int i = 0; i < n1; ++i)
+    L[i] = arr[l + i];
+  for (int j = 0; j < n2; ++j)
+    R[j] = arr[m + 1 + j];
+  int i = 0, j = 0, k = l;
+  while (i < n1 && j < n2) {
+    if (L[i] <= R[j]) arr[k++] = L[i++];
+    else arr[k++] = R[j++];
+  }
+  while (i < n1) arr[k++] = L[i++];
+  while (j < n2) arr[k++] = R[j++];
+}
+
+void mergeSort(int arr[], int l, int r) {
+  if (l < r) {
+    int m = (l + r) / 2;
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+    merge(arr, l, m, r);
+  }
+}`
+    },
+    quick: {
+      cpp: `int partition(int arr[], int low, int high) {
+  int pivot = arr[high];
+  int i = (low - 1);
+  for (int j = low; j < high; j++) {
+    if (arr[j] < pivot) {
+      i++;
+      swap(arr[i], arr[j]);
+    }
+  }
+  swap(arr[i + 1], arr[high]);
+  return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+  if (low < high) {
+    int pi = partition(arr, low, high);
+    quickSort(arr, low, pi - 1);
+    quickSort(arr, pi + 1, high);
+  }
+}`,
+      python: `def quick_sort(arr):
+  if len(arr) <= 1:
+    return arr
+  pivot = arr[len(arr) // 2]
+  left = [x for x in arr if x < pivot]
+  middle = [x for x in arr if x == pivot]
+  right = [x for x in arr if x > pivot]
+  return quick_sort(left) + middle + quick_sort(right)`,
+      java: `int partition(int arr[], int low, int high) {
+  int pivot = arr[high];
+  int i = (low - 1);
+  for (int j = low; j < high; j++) {
+    if (arr[j] < pivot) {
+      i++;
+      int temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+  }
+  int temp = arr[i + 1];
+  arr[i + 1] = arr[high];
+  arr[high] = temp;
+  return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+  if (low < high) {
+    int pi = partition(arr, low, high);
+    quickSort(arr, low, pi - 1);
+    quickSort(arr, pi + 1, high);
+  }
+}`
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">All Sorting Algorithm Visualizer</h1>
-          <p className="text-gray-600 dark:text-gray-400">Visualize and compare sorting algorithms interactively</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+            All Sorting Algorithm Visualizer
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Visualize and compare sorting algorithms interactively
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -247,9 +471,32 @@ export default function Visualizer() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-          <div className="flex flex-col justify-stretch h-full">
+          <div className="flex flex-col justify-stretch h-full space-y-6">
             <ComplexityTable algorithm={selectedAlgorithm} />
+
+            {/* Algorithm Code Snippet Component */}
+            <div className="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg p-6 shadow-md space-y-4 transition-all duration-300 hover:shadow-lg dark:shadow-none">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-0">
+                  Algorithm Code
+                </h2>
+                <select
+                  value={selectedLanguage}
+                  onChange={(e) => setSelectedLanguage(e.target.value as 'cpp' | 'python' | 'java')}
+                  className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                >
+                  <option value="cpp">C++</option>
+                  <option value="python">Python</option>
+                  <option value="java">Java</option>
+                </select>
+              </div>
+
+              <pre className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm rounded-lg p-4 overflow-x-auto whitespace-pre-wrap">
+                <code>{codeSnippets[selectedAlgorithm][selectedLanguage]}</code>
+              </pre>
+            </div>
           </div>
+
           <div className="flex flex-col justify-stretch h-full">
             {sortResult && <FlowchartDiagram algorithm={selectedAlgorithm} />}
           </div>
