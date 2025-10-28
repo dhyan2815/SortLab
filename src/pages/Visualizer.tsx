@@ -4,8 +4,8 @@ import VisualizationCanvas from '../components/VisualizationCanvas';
 import ComplexityTable from '../components/ComplexityTable';
 import FlowchartDiagram from '../components/FlowchartDiagram';
 import PerformanceMetrics from '../components/PerformanceMetrics';
-import { algorithms, AlgorithmKey, SortResult } from '../../src/utils/sortingAlgorithms';
-import { downloadCSV } from '../../src/utils/csvExport';
+import { algorithms, AlgorithmKey, SortResult } from '../utils/sortingAlgorithms';
+import { downloadCSV } from '../utils/csvExport';
 
 export default function Visualizer() {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmKey>('bubble');
@@ -315,6 +315,67 @@ void quickSort(int arr[], int low, int high) {
     int pi = partition(arr, low, high);
     quickSort(arr, low, pi - 1);
     quickSort(arr, pi + 1, high);
+  }
+}`
+    }
+    ,
+    heap: {
+      cpp: `void heapify(int arr[], int n, int i) {
+  int largest = i;
+  int l = 2 * i + 1;
+  int r = 2 * i + 2;
+  if (l < n && arr[l] > arr[largest]) largest = l;
+  if (r < n && arr[r] > arr[largest]) largest = r;
+  if (largest != i) {
+    std::swap(arr[i], arr[largest]);
+    heapify(arr, n, largest);
+  }
+}
+
+void heapSort(int arr[], int n) {
+  for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
+  for (int i = n - 1; i > 0; i--) {
+    std::swap(arr[0], arr[i]);
+    heapify(arr, i, 0);
+  }
+}`,
+      python: `def heapify(arr, n, i):
+  largest = i
+  l = 2 * i + 1
+  r = 2 * i + 2
+  if l < n and arr[l] > arr[largest]:
+    largest = l
+  if r < n and arr[r] > arr[largest]:
+    largest = r
+  if largest != i:
+    arr[i], arr[largest] = arr[largest], arr[i]
+    heapify(arr, n, largest)
+
+def heap_sort(arr):
+  n = len(arr)
+  for i in range(n//2 - 1, -1, -1):
+    heapify(arr, n, i)
+  for i in range(n-1, 0, -1):
+    arr[i], arr[0] = arr[0], arr[i]
+    heapify(arr, i, 0)`,
+      java: `void heapify(int arr[], int n, int i) {
+  int largest = i;
+  int l = 2 * i + 1;
+  int r = 2 * i + 2;
+  if (l < n && arr[l] > arr[largest]) largest = l;
+  if (r < n && arr[r] > arr[largest]) largest = r;
+  if (largest != i) {
+    int swap = arr[i]; arr[i] = arr[largest]; arr[largest] = swap;
+    heapify(arr, n, largest);
+  }
+}
+
+void heapSort(int arr[]) {
+  int n = arr.length;
+  for (int i = n/2 - 1; i >= 0; i--) heapify(arr, n, i);
+  for (int i = n-1; i > 0; i--) {
+    int temp = arr[0]; arr[0] = arr[i]; arr[i] = temp;
+    heapify(arr, i, 0);
   }
 }`
     }
