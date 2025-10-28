@@ -6,7 +6,7 @@ import About from './pages/About';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-950">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
         <Navigation />
         <Routes>
           <Route path="/" element={<Visualizer />} />

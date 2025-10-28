@@ -100,29 +100,29 @@ export default function VisualizationCanvas({ step, animate = true }: Visualizat
   }, [step, animate]);
 
   return (
-    <div className="w-full bg-gray-900/50 rounded-lg p-4 border border-gray-800">
+    <div className="w-full bg-white dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-800 shadow-sm dark:shadow-none">
       <svg ref={svgRef} className="w-full" style={{ minHeight: '300px' }}></svg>
 
       <div className="flex flex-wrap gap-4 mt-4 justify-center text-xs sm:text-sm">
         <div className="flex items-center space-x-2">
-          <div className="w-4 h-4 bg-gray-600 rounded"></div>
-          <span className="text-gray-400">Unsorted</span>
+          <div className="w-4 h-4 bg-gray-400 dark:bg-gray-600 rounded"></div>
+          <span className="text-gray-600 dark:text-gray-400">Unsorted</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-pink-500 rounded"></div>
-          <span className="text-gray-400">Comparing</span>
+          <span className="text-gray-600 dark:text-gray-400">Comparing</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-purple-500 rounded"></div>
-          <span className="text-gray-400">Swapping</span>
+          <span className="text-gray-600 dark:text-gray-400">Swapping</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-amber-500 rounded"></div>
-          <span className="text-gray-400">Pivot</span>
+          <span className="text-gray-600 dark:text-gray-400">Pivot</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-4 h-4 bg-cyan-500 rounded"></div>
-          <span className="text-gray-400">Sorted</span>
+          <span className="text-gray-600 dark:text-gray-400">Sorted</span>
         </div>
       </div>
     </div>
