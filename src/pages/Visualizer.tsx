@@ -62,6 +62,7 @@ export default function Visualizer() {
       const result = await algorithms[selectedAlgorithm].fn(array);
       setSortResult(result);
       setIsSorting(false);
+      setIsPlaying(true);
     } catch (error) {
       console.error('Sorting error:', error);
       setIsSorting(false);
@@ -432,7 +433,7 @@ void heapSort(int arr[]) {
               <button
                 onClick={handleSort}
                 disabled={isSorting || isPlaying}
-                className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
+                className="w-full bg-cyan-600 hover:bg-cyan-800 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed text-white font-medium py-2.5 px-4 rounded-lg flex items-center justify-center space-x-2 shadow-md duration-300 transition-all hover:shadow-lg"
               >
                 {isSorting ? (
                   <>
