@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import { algorithmFlowcharts } from '../../src/utils/algorithmInfo';
+import { algorithmFlowcharts } from '../utils/algorithmInfo';
 
 interface FlowchartDiagramProps {
   algorithm: string;
@@ -20,10 +20,10 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
     if (!container) return;
 
     const containerWidth = container.clientWidth;
-    const nodeHeight = 60;
-    const nodeWidth = 180;
-    const verticalSpacing = 80;
-    const horizontalSpacing = 40;
+    const nodeHeight = 60; // standard height
+    const nodeWidth = 160; // standard width for readability
+    const verticalSpacing = 120; // ensures clear separation between rows
+    const horizontalSpacing = 60; // horizontal offset for routed edges
 
     const totalHeight = steps.length * verticalSpacing + 100;
 
@@ -32,6 +32,9 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
     svg.selectAll('*').remove();
 
     const g = svg.append('g').attr('transform', `translate(${containerWidth / 2}, 50)`);
+    // Separate layers so edges render beneath nodes
+    const edgesLayer = g.append('g').attr('class', 'edges-layer');
+    const nodesLayer = g.append('g').attr('class', 'nodes-layer');
 
     const defs = svg.append('defs');
     const marker = defs.append('marker')
@@ -50,13 +53,12 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
       const y = i * verticalSpacing;
       const x = 0;
 
-      let shape;
-      const group = g.append('g')
+      const group = nodesLayer.append('g')
         .attr('class', 'flowchart-node')
         .style('cursor', 'default');
 
       if (step.type === 'start' || step.type === 'end') {
-        shape = group.append('ellipse')
+        group.append('ellipse')
           .attr('cx', x)
           .attr('cy', y)
           .attr('rx', nodeWidth / 2)
@@ -71,13 +73,13 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
           [x, y + nodeHeight / 2],
           [x - nodeWidth / 2, y],
         ];
-        shape = group.append('polygon')
+        group.append('polygon')
           .attr('points', points.map(p => p.join(',')).join(' '))
           .attr('fill', '#1e293b')
           .attr('stroke', '#ec4899')
           .attr('stroke-width', 2);
       } else {
-        shape = group.append('rect')
+        group.append('rect')
           .attr('x', x - nodeWidth / 2)
           .attr('y', y - nodeHeight / 2)
           .attr('width', nodeWidth)
@@ -94,7 +96,7 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'middle')
         .attr('fill', '#f3f4f6')
-        .attr('font-size', '12px')
+        .attr('font-size', '13px')
         .attr('font-weight', '500')
         .style('pointer-events', 'none')
         .each(function() {
@@ -135,15 +137,47 @@ export default function FlowchartDiagram({ algorithm }: FlowchartDiagramProps) {
             const nextIndex = steps.indexOf(nextStep);
             const nextY = nextIndex * verticalSpacing;
 
-            g.append('line')
-              .attr('x1', x)
-              .attr('y1', y + nodeHeight / 2)
-              .attr('x2', x)
-              .attr('y2', nextY - nodeHeight / 2)
-              .attr('stroke', '#06b6d4')
-              .attr('stroke-width', 2)
-              .attr('marker-end', 'url(#arrowhead)')
-              .attr('opacity', 0.7);
+            const isDirect = nextIndex === i + 1;
+
+            if (isDirect) {
+              // Safe vertical line to immediate next node
+              edgesLayer.append('line')
+                .attr('x1', x)
+                .attr('y1', y + nodeHeight / 2)
+                .attr('x2', x)
+                .attr('y2', nextY - nodeHeight / 2)
+                .attr('stroke', '#06b6d4')
+                .attr('stroke-width', 2)
+                .attr('stroke-linecap', 'round')
+                .attr('marker-end', 'url(#arrowhead)')
+                .attr('opacity', 0.7);
+            } else {
+              // Route around intermediate nodes with elbows
+              const exitY = y + nodeHeight / 2;
+              const entryY = nextY - nodeHeight / 2;
+              const legPadding = 12; // vertical clearance before turning
+              const branchOffset =
+                (idx % 2 === 0 ? 1 : -1) * (nodeWidth / 2 + horizontalSpacing * (1 + Math.floor(idx / 2)));
+            
+              const pathD = [
+                `M ${x} ${exitY}`,                 // start at bottom center of source
+                `V ${exitY + legPadding}`,         // short down
+                `H ${branchOffset}`,               // go sideways out
+                `V ${entryY - legPadding}`,        // go down near target
+                `H ${x}`,                          // go back to target x
+                `V ${entryY}`                      // up to target top
+              ].join(' ');
+            
+              edgesLayer.append('path')
+                .attr('d', pathD)
+                .attr('fill', 'none')
+                .attr('stroke', '#06b6d4')
+                .attr('stroke-width', 2)
+                .attr('stroke-linecap', 'round')
+                .attr('stroke-linejoin', 'round')
+                .attr('marker-end', 'url(#arrowhead)')
+                .attr('opacity', 0.7);
+            }
           }
         });
       }

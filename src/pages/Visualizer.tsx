@@ -104,7 +104,7 @@ export default function Visualizer() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">A Sorting Algorithm Visualizer</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">All Sorting Algorithm Visualizer</h1>
           <p className="text-gray-600 dark:text-gray-400">Visualize and compare sorting algorithms interactively</p>
         </div>
 
@@ -136,7 +136,7 @@ export default function Visualizer() {
                 <textarea
                   value={inputData}
                   onChange={(e) => setInputData(e.target.value)}
-                  rows={3}
+                  rows={2}
                   className="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2.5 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all resize-none"
                   placeholder="e.g., 64, 34, 25, 12, 22, 11, 90"
                   disabled={isSorting || isPlaying}
