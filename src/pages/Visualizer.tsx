@@ -104,8 +104,8 @@ export default function Visualizer() {
     <div className="min-h-screen bg-gray-950">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <div className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">Algorithm Visualizer</h1>
-          <p className="text-gray-400">Compare and visualize sorting algorithms in real-time</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">A Sorting Algorithm Visualizer</h1>
+          <p className="text-gray-400">Visualize and compare sorting algorithms interactively</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

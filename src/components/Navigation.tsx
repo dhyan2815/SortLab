@@ -12,7 +12,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2 group">
             <BarChart3 className="w-7 h-7 text-cyan-400 transition-transform group-hover:scale-110" />
-            <span className="text-xl font-bold text-white">Sort<span className="text-cyan-400">Viz</span></span>
+            <span className="text-xl font-bold text-white">Sort<span className="text-cyan-400"> Lab</span></span>
           </Link>
 
           <div className="flex space-x-1">
