@@ -6,6 +6,7 @@ import FlowchartDiagram from '../components/FlowchartDiagram';
 import PerformanceMetrics from '../components/PerformanceMetrics';
 import { algorithms, AlgorithmKey, SortResult } from '../utils/sortingAlgorithms';
 import { downloadCSV } from '../utils/csvExport';
+import Footer from '../components/Footer';
 
 export default function Visualizer() {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmKey>('bubble');
@@ -564,6 +565,7 @@ void heapSort(int arr[]) {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
